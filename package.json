@@ -10,7 +10,14 @@
     "docker:build": "docker build -t docker-101 .",
     "docker:run": "docker run -dp 3000:3000 -v todo-db:/etc/todos docker-101",
     "docker:volume": "docker volume create todo-db",
-    "docker:cmd1": "docker run -dp 3000:3000 -w /app -v /d/docker-tutorial/app:/app node:10-alpine sh -c \"yarn install && yarn run dev\""
+    "docker:cmd1": "docker run -dp 3000:3000 -w /app -v /d/docker-tutorial/app:/app node:10-alpine sh -c \"yarn install && yarn run dev\"",
+    "docker:cmd2": "docker run -dp 3000:3000 -w /app -v /d/docker-tutorial/app:/app --network todo-app -e MYSQL_HOST=mysql -e MYSQL_USER=root -e MYSQL_PASSWORD=secret -e MYSQL_DB=todos node:10-alpine sh -c \"yarn install && yarn run dev\"",
+    "docker:network": "docker network create todo-app",
+    "docker:mysql": "docker run -d --network todo-app --network-alias mysql -v todo-mysql-data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=secret -e MYSQL_DATABASE=todos mysql:5.7",
+    "docker:mysql-admin": "docker exec -it 6cd6c5b9d04ae2436eff4826183b16802214b5997fa4bf7783c6357d43e2c915 mysql -p",
+    "docker:netshoot": "docker run -it --network todo-app nicolaka/netshoot",
+    "docker:logs": "docker logs f752958d04658a8cb162ff44521df98f0e3374dc6f9ef2dda0d4c6e690a95f5f",
+    "docker:mysql-admin2": "docker exec -ti 6cd6c5b9d04ae2436eff4826183b16802214b5997fa4bf7783c6357d43e2c915 mysql -p todos"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
