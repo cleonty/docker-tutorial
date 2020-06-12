@@ -20,6 +20,7 @@
     "docker:mysql-admin2": "docker exec -ti 6cd6c5b9d04ae2436eff4826183b16802214b5997fa4bf7783c6357d43e2c915 mysql -p todos",
     "up": "docker-compose up -d",
     "down": "docker-compose down",
+    "history": "docker image history --no-trunc docker-101",
     "down:and-remove-volumes": "docker-compose down --volumes",
     "logs": "docker-compose logs -f"
   },
